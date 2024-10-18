@@ -6,7 +6,22 @@ using System.Threading.Tasks;
 
 namespace clase17
 {
-    internal class Auto
+    class Auto: IGuardable
     {
+        string marca;
+        int modelo;
+        public Auto(string m, int año)
+        {
+            marca = m;
+            modelo = año;
+
+        }
+
+        public string LineaCSV()
+        {
+            return "Auto: " + marca + modelo.ToString();
+        }
+
+
     }
 }

@@ -8,8 +8,9 @@ using System.Text;
 using System.Windows.Forms;
 //
 using System.Collections;
+using System.IO;
 
-namespace ejemploPolimorfismo
+namespace clase17
 {
     public partial class Form1 : Form
     {
@@ -18,7 +19,7 @@ namespace ejemploPolimorfismo
             InitializeComponent();
         }
 
-        ArrayList listaAnimales = new ArrayList();
+        List<Animal> listaAnimales = new List<Animal>(); 
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -29,16 +30,35 @@ namespace ejemploPolimorfismo
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Animal.TipoOrden(1);
+            listaAnimales.Sort();
             foreach (Animal a in listaAnimales)
             {
-                
-                {
-                    listBox1.Items.Add(a.Datos());
-                    listBox1.Items.Add(" edad:" + a.Edad(DateTime.Today));
-                }
+                listBox1.Items.Add(a.LineaCSV());
+            }
+        }
 
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            Animal buscado = new Perro(tbAnimales.Text, DateTime.Now, "");
+            
+            int orden = listaAnimales.BinarySearch(buscado);
+
+            if (orden > -1)
+            {
+                MessageBox.Show(listaAnimales[orden].LineaCSV());
 
             }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FileStream fs = new FileStream("texto.csv", FileMode.Open, FileAccess.Read);
+
         }
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ejemploPolimorfismo
+namespace clase17
 {
-    class Perro:Animal
+    class Perro : Animal
     {
         string ruido = "Guau ";
         public Perro(string nombre, DateTime fecha, string ruido)
